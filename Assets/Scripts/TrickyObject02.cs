@@ -29,8 +29,8 @@ public class TrickyObject02 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target02.GetChild(0).gameObject.GetComponent<RotObject02>().enabled = false;
-        target02.gameObject.SetActive(false);
+        //target02.GetChild(0).gameObject.GetComponent<RotObject02>().enabled = false;
+        //target02.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,18 +56,29 @@ public class TrickyObject02 : MonoBehaviour
     {
         trig = true;
 
+        target02.position = target.position;
+        target02.rotation = target.rotation;
+        target02.gameObject.SetActive(true);
+
+        target.gameObject.SetActive(false);
+
+        if (target02.gameObject.activeInHierarchy == true)
+        {
+            target02.GetChild(0).gameObject.GetComponent<RotObject02>().enabled = true;
+        }
+
         StartCoroutine(MoveCo02());
 
         //StartCoroutine("MoveCo", currentIndex++);
         targetPos = transform.position;
 
-        
+       
     }
 
     IEnumerator MoveCo02()
     {
         Vector3 startPos = target.position;
-        Vector3 lastPos = target.position;
+        Vector3 lastPos = target02.position;
 
         switch (dir)
         {
@@ -98,25 +109,15 @@ public class TrickyObject02 : MonoBehaviour
 
         while (timing <= 1.0f)
         {
-            target.position = Vector3.Lerp(startPos, lastPos, timing);
+            target02.position = Vector3.Lerp(startPos, lastPos, timing);
             transform.position = Vector3.Lerp(targetPos, targetLastPos, timing);
             timing += Time.deltaTime * speed;
 
-            yield return null;
+            //yield return null;
         }
 
-        target.position = lastPos;
+        target02.position = lastPos;
         transform.position = targetLastPos;
-
-        target02.position = target.position;
-        target02.rotation = target.rotation;
-        target02.gameObject.SetActive(true);
-        target.gameObject.SetActive(false);
-
-        if (target02.gameObject.activeInHierarchy == true)
-        {
-            target02.GetChild(0).gameObject.GetComponent<RotObject02>().enabled = true;
-        }
 
         yield return null;
     }

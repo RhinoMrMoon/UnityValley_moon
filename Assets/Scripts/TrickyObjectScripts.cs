@@ -19,6 +19,8 @@ public class TrickyObjectScripts : MonoBehaviour
     public float offset;
 
     public Transform target;
+    public Transform target02;
+
     //public List<Transform> targets;
 
     //public List<Walkable> block = new List<Walkable>();
@@ -46,6 +48,9 @@ public class TrickyObjectScripts : MonoBehaviour
         }
 
         target.gameObject.SetActive(false);
+
+        target02.GetChild(0).gameObject.GetComponent<RotObject02>().enabled = false;
+        target02.gameObject.SetActive(false);
 
         //pathActive = false;
         //rotObject = GameObject.Find("Lever").GetComponent<RotObject>();

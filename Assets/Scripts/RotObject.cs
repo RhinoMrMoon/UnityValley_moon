@@ -62,21 +62,11 @@ public class RotObject : MonoBehaviour
 
                             pastAngle = getAngle();
 
-                            //soundNum = 0;
+                            soundNum = 0;
 
                             break;
                         }
                     }
-
-                    // 충돌한 오브젝트가 동일하면
-                    //if (mouseHit.transform.gameObject.Equals(gameObject))
-                    //{
-                    //    isRotate = true;
-
-                    //    pastAngle = getAngle();
-
-                    //    soundNum = 0;
-                    //}
                 }
             }
 
@@ -101,9 +91,9 @@ public class RotObject : MonoBehaviour
                 {
                     pastAngle = getAngle();
 
-                    //SoundManager.instance.play("RotateSound_" + soundNum.ToString());
+                    SoundManager1.instance.play("RotateSound_" + soundNum.ToString());
 
-                    //soundNum = (soundNum > 5) ? (0) : (soundNum + 1);
+                    soundNum = (soundNum > 5) ? (0) : (soundNum + 1);
                 }
 
                 // 각도 확인 후 큐브 경로 설정
@@ -111,40 +101,7 @@ public class RotObject : MonoBehaviour
                 {
                     for (int j = 0; j < pathCubes[i].path.Count; j++)
                     {
-                        //if (pathCubes[i].path[j].block.tricky)
-                        //{
-                        //    Debug.Log(pathCubes[i].path[j].block.tricky);
-
-                        //    pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = transform.eulerAngles.Equals(pathCubes[i].angle);
-
-                        //    if (pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active == transform.eulerAngles.Equals(pathCubes[i].angle))
-                        //    {
-                        //        pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = pathCubes[i].path[j].block.tricky;
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = transform.eulerAngles.Equals(pathCubes[i].angle);
-                        //}
-
-                        //if (transform.eulerAngles == pathCubes[i].angle)
-                        //{
-                        //    if (!pathCubes[i].path[j].block.tricky)
-                        //    {
-                        //        pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = transform.eulerAngles.Equals(pathCubes[i].angle);
-                        //    }
-                        //    if (pathCubes[i].path[j].block.tricky)
-                        //    {
-                        //        pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = TrickObject.possiblePathWalk;
-                        //    }
-                        //}
-
                         pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = transform.eulerAngles.Equals(pathCubes[i].angle);
-
-                        //if (pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active == transform.eulerAngles.Equals(pathCubes[i].angle))
-                        //{
-                        //    rotateObjectBool = true;
-                        //}
                     }
                 }
 
@@ -205,8 +162,8 @@ public class RotObject : MonoBehaviour
             {
                 setAngle(nextAngle);
 
-                //SoundManager.instance.play("RotateSound_" + soundNum.ToString(), 0.5f);
-                //soundNum++;
+                SoundManager1.instance.play("RotateSound_" + soundNum.ToString(), 0.5f);
+                soundNum++;
 
                 // 한 번 튕긴 경우
                 if (nextAngle != finalAngle)
@@ -228,27 +185,6 @@ public class RotObject : MonoBehaviour
         {
             for (int j = 0; j < pathCubes[i].path.Count; j++)
             {
-                //if (pathCubes[i].path[j].block.tricky)
-                //{
-                //    Debug.Log(pathCubes[i].path[j].block.tricky);
-                //    pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = pathCubes[i].path[j].block.tricky;
-                //}
-                //else
-                //{
-                //    pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = transform.eulerAngles.Equals(pathCubes[i].angle);
-                //}
-
-                //if (transform.eulerAngles == pathCubes[i].angle)
-                //        {
-                //            if (!pathCubes[i].path[j].block.tricky)
-                //            {
-                //                pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = transform.eulerAngles.Equals(pathCubes[i].angle);
-                //            }
-                //            if (pathCubes[i].path[j].block.tricky)
-                //            {
-                //                pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = TrickObject.possiblePathWalk;
-                //            }
-                //        }
 
                 pathCubes[i].path[j].block.PossiblePaths[pathCubes[i].path[j].index - 1].active = transform.eulerAngles.Equals(pathCubes[i].angle);
             }

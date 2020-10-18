@@ -59,8 +59,9 @@ public class TrickyObject02 : MonoBehaviour
         target02.position = target.position;
         target02.rotation = target.rotation;
         target02.gameObject.SetActive(true);
-
+        
         target.gameObject.SetActive(false);
+
 
         if (target02.gameObject.activeInHierarchy == true)
         {
@@ -113,8 +114,9 @@ public class TrickyObject02 : MonoBehaviour
             transform.position = Vector3.Lerp(targetPos, targetLastPos, timing);
             timing += Time.deltaTime * speed;
 
-            //yield return null;
+            yield return null;
         }
+
 
         target02.position = lastPos;
         transform.position = targetLastPos;

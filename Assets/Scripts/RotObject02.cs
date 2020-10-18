@@ -54,21 +54,11 @@ public class RotObject02 : MonoBehaviour
 
                             pastAngle = getAngle();
 
-                            //soundNum = 0;
+                            soundNum = 0;
 
                             break;
                         }
                     }
-
-                    // 충돌한 오브젝트가 동일하면
-                    //if (mouseHit.transform.gameObject.Equals(gameObject))
-                    //{
-                    //    isRotate = true;
-
-                    //    pastAngle = getAngle();
-
-                    //    soundNum = 0;
-                    //}
                 }
             }
 
@@ -93,9 +83,9 @@ public class RotObject02 : MonoBehaviour
                 {
                     pastAngle = getAngle();
 
-                    //SoundManager.instance.play("RotateSound_" + soundNum.ToString());
+                    SoundManager1.instance.play("RotateSound_" + soundNum.ToString());
 
-                    //soundNum = (soundNum > 5) ? (0) : (soundNum + 1);
+                    soundNum = (soundNum > 5) ? (0) : (soundNum + 1);
                 }
 
                 // 각도 확인 후 큐브 경로 설정
@@ -149,7 +139,7 @@ public class RotObject02 : MonoBehaviour
         // 다음 각도
         float nextAngle = (outBack) ? (firstAngle) : (finalAngle);
 
-        int soundNum = 1;
+        soundNum = 1;
 
         // 회전
         while (timing < 1.0f)
@@ -164,8 +154,8 @@ public class RotObject02 : MonoBehaviour
             {
                 setAngle(nextAngle);
 
-                //SoundManager.instance.play("RotateSound_" + soundNum.ToString(), 0.5f);
-                //soundNum++;
+                SoundManager1.instance.play("RotateSound_" + soundNum.ToString(), 0.5f);
+                soundNum++;
 
                 // 한 번 튕긴 경우
                 if (nextAngle != finalAngle)

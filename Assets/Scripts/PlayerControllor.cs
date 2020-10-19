@@ -100,7 +100,7 @@ public class PlayerControllor : MonoBehaviour
                 if (mouseHit.transform.GetComponent<Walkable>() != null)
                 {
                     // 클릭음 재생
-                    //SoundManager.instance.play("Navi", 0.5f);
+                    SoundManager.instance.play("Navi", 0.5f);
 
                     // 클릭한 큐브 위치 설정
                     clickedCube = mouseHit.transform;

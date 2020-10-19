@@ -54,6 +54,8 @@ public class TrickyObject02 : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
+        SoundManager.instance.play("trigger_lock_Sound");
+
         trig = true;
 
         target02.position = target.position;
@@ -73,7 +75,7 @@ public class TrickyObject02 : MonoBehaviour
         //StartCoroutine("MoveCo", currentIndex++);
         targetPos = transform.position;
 
-       
+
     }
 
     IEnumerator MoveCo02()

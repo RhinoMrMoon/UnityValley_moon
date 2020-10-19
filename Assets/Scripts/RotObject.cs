@@ -91,7 +91,7 @@ public class RotObject : MonoBehaviour
                 {
                     pastAngle = getAngle();
 
-                    SoundManager1.instance.play("RotateSound_" + soundNum.ToString());
+                    SoundManager.instance.play("RotateSound_" + soundNum.ToString());
 
                     soundNum = (soundNum > 5) ? (0) : (soundNum + 1);
                 }
@@ -162,7 +162,7 @@ public class RotObject : MonoBehaviour
             {
                 setAngle(nextAngle);
 
-                SoundManager1.instance.play("RotateSound_" + soundNum.ToString(), 0.5f);
+                SoundManager.instance.play("RotateSound_" + soundNum.ToString(), 0.5f);
                 soundNum++;
 
                 // 한 번 튕긴 경우

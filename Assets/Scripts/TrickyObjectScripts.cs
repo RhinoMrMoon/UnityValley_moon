@@ -156,6 +156,8 @@ public class TrickyObjectScripts : MonoBehaviour
         target.gameObject.SetActive(true);
         trig = true;
 
+        SoundManager.instance.play("trigger_lock_Sound");
+
         for (int i = 0; i < 6; i++)
         {
             target.GetChild(i).GetChild(3).gameObject.GetComponent<Walkable>().enabled = true;
@@ -180,6 +182,7 @@ public class TrickyObjectScripts : MonoBehaviour
         //}
 
         targetPos = transform.position;
+
     }
 
     IEnumerator MoveCo(int index)

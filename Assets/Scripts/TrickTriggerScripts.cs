@@ -14,7 +14,7 @@ public class TrickTriggerScripts : MonoBehaviour
 
     public Transform target;
 
-    public Transform target02;
+    //public Transform target02;
 
     public float speed;
     bool trig = false;
@@ -35,6 +35,12 @@ public class TrickTriggerScripts : MonoBehaviour
         //{
         //    target02.GetChild(i).gameObject.GetComponent<Walkable>().enabled = false;
         //}
+
+        //for (int i = 0; i < target02.childCount; i++)
+        //{
+        //    target02.GetChild(i).GetComponentInChildren<Walkable>().enabled = false;
+        //    target02.GetChild(i).gameObject.SetActive(false);
+        //}
     }
 
     // Update is called once per frame
@@ -52,6 +58,11 @@ public class TrickTriggerScripts : MonoBehaviour
         {
             timing += Time.deltaTime * speed;
 
+            if (true)
+            {
+
+            }
+            //gameObject.transform.Find("Player").GetComponentInChildren<PlayerControllor>().enabled = false;
             // 간격
             //if (timing >= speed / 3.0f)
             //{
@@ -66,7 +77,6 @@ public class TrickTriggerScripts : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        
 
         SoundManager.instance.play("trigger_lock_Sound");
 
@@ -78,6 +88,7 @@ public class TrickTriggerScripts : MonoBehaviour
 
         //StartCoroutine("MoveCo", currentIndex++);
         targetPos = transform.position;
+
     }
 
     IEnumerator MoveCo02()
@@ -120,6 +131,23 @@ public class TrickTriggerScripts : MonoBehaviour
 
             yield return null;
         }
+
+        //if (timing >= 1.0f)
+        //{
+        //    for (int i = 0; i < target02.childCount; i++)
+        //    {
+        //        target02.GetChild(i).gameObject.SetActive(true);
+        //        //target02.GetChild(i).GetComponentInChildren<Walkable>().enabled = true;
+        //    }
+        //}
+
+        //if (timing >= 1.0f)
+        //{
+        //    for (int i = 0; i < target02.transform.childCount; i++)
+        //    {
+        //        target02.GetChild(i).gameObject.GetComponent<Walkable>().enabled = true;
+        //    }
+        //}
 
         //if (timing >= 1.0f)
         //{

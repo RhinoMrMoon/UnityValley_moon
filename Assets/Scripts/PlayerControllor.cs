@@ -27,6 +27,8 @@ public class PlayerControllor : MonoBehaviour
     Walkable pastCube;
     Walkable nextCube;
     float timing = 0;
+    float triggerTiming = 0;
+    bool trig = false;
 
     [Space]
     public float moveSpeed;
@@ -56,6 +58,22 @@ public class PlayerControllor : MonoBehaviour
         // 플레이어가 밟고 있는 큐브 설정
         RayCastDown();
 
+        if (currentCube.gameObject.name == "MiddleGoalCube")
+        {
+            triggerTiming += Time.deltaTime;
+        }
+
+        if (triggerTiming > 0 && triggerTiming <= 3.0f)
+        {
+            trig = true;
+        }
+        else
+        {
+            trig = false;
+        }
+
+        
+
         if (currentCube.GetComponent<Walkable>().isTop)
         {
             SetLayerObject(transform, "Top");
@@ -65,14 +83,6 @@ public class PlayerControllor : MonoBehaviour
             SetLayerObject(transform, "Default");
         }
 
-        // 레버 움직이지 못하게
-        //if (currentCube.parent == GameObject.Find("RotationObject").transform)
-        //{
-        //    //Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
-        //    //failed
-        //    //GameManager.instance.Ready = false;
-        //}
 
         // 현재 밟고 있는 큐브가 움직이는 경우
         if (currentCube.GetComponent<Walkable>().movingGround)
@@ -85,53 +95,57 @@ public class PlayerControllor : MonoBehaviour
             transform.parent = null;
         }
 
-        // 마우스 클릭과 게임매니저 플래그 체크
-        if (Input.GetMouseButtonDown(0) && GameManager.instance.Ready)
+        if (!trig)
         {
-            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit mouseHit;
-
-            //anim.SetBool("Walking", true);
-
-            // 레이 발사
-            if (Physics.Raycast(mouseRay, out mouseHit))
+            // 마우스 클릭과 게임매니저 플래그 체크
+            if (Input.GetMouseButtonDown(0) && GameManager.instance.Ready)
             {
-                // 클릭한 곳이 Path인 경우
-                if (mouseHit.transform.GetComponent<Walkable>() != null)
+                Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit mouseHit;
+
+                //anim.SetBool("Walking", true);
+
+                // 레이 발사
+                if (Physics.Raycast(mouseRay, out mouseHit))
                 {
-                    // 클릭음 재생
-                    SoundManager.instance.play("Navi", 0.5f);
-
-                    // 클릭한 큐브 위치 설정
-                    clickedCube = mouseHit.transform;
-
-
-                    // 이펙트 위치 조정
-                    clickEffect.transform.position = clickedCube.GetComponent<Walkable>().GetWalkPoint();
-
-                    // 이펙트 레이어 조정
-                    if (clickedCube.childCount > 0)
+                    // 클릭한 곳이 Path인 경우
+                    // Walkable 스크립트가 null값이 아니라면
+                    if (mouseHit.transform.GetComponent<Walkable>() != null)
                     {
-                        SetLayerObject(clickEffect.transform, "Top");
+                        // 클릭음 재생
+                        SoundManager.instance.play("Navi", 0.5f);
+
+                        // 클릭한 큐브 위치 설정
+                        clickedCube = mouseHit.transform;
+
+
+                        // 이펙트 위치 조정
+                        clickEffect.transform.position = clickedCube.GetComponent<Walkable>().GetWalkPoint();
+
+                        // 이펙트 레이어 조정
+                        if (clickedCube.childCount > 0)
+                        {
+                            SetLayerObject(clickEffect.transform, "Top");
+                        }
+                        else
+                        {
+                            SetLayerObject(clickEffect.transform, "Default");
+                        }
+
+                        // 이펙트 재생
+                        clickEffect.Play();
+
+                        // 경로 초기화
+                        finalPath.Clear();
+
+                        // 길찾기 시작
+                        FindPath();
                     }
-                    else
-                    {
-                        SetLayerObject(clickEffect.transform, "Default");
-                    }
-
-                    // 이펙트 재생
-                    clickEffect.Play();
-
-                    // 경로 초기화
-                    finalPath.Clear();
-
-                    // 길찾기 시작
-                    FindPath();
                 }
             }
-        }
 
-        FollowPath();
+            FollowPath();
+        }
     }
 
     // 길찾기
@@ -222,6 +236,7 @@ public class PlayerControllor : MonoBehaviour
             }
         }
 
+        // 경로가 하나 이상이면
         if (finalPath.Count > 0)
         {
             bool walk = false;

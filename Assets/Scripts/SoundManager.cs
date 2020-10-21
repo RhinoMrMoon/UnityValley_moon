@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class SoundManager : MonoBehaviour
 {
@@ -29,8 +30,6 @@ public class SoundManager : MonoBehaviour
 
         bgm.playOnAwake = false;
         effect.playOnAwake = false;
-
-        play("IntroBGM");
     }
 
     public void play(string audioName, float volume = 1.0f)

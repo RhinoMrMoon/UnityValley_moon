@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour
     {
         SoundManager.instance.stop("IntroBGM");
         SoundManager.instance.play("StageSelect", 0.5f);
-        SoundManager.instance.play("02 The Garden");
+        SoundManager.instance.play("05 Water Palace");
 
         SceneManager.LoadScene("Stage01");
     }
@@ -28,8 +28,8 @@ public class SceneController : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Stage01":
-                SoundManager.instance.stop("02 The Garden");
-                SoundManager.instance.play("02 The Garden");
+                SoundManager.instance.stop("05 Water Palace");
+                SoundManager.instance.play("05 Water Palace");
                 SceneManager.LoadScene("Stage01");
                 break;
 
@@ -46,7 +46,7 @@ public class SceneController : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Stage01": 
-            {SoundManager.instance.stop("02 The Garden");}
+            {SoundManager.instance.stop("05 Water Palace");}
             break;
 
             case "Stage02":

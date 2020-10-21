@@ -61,6 +61,7 @@ public class PlayerControllor : MonoBehaviour
         if (currentCube.gameObject.name == "MiddleGoalCube")
         {
             triggerTiming += Time.deltaTime;
+            anim.SetBool("Walking", false);
         }
 
         if (triggerTiming > 0 && triggerTiming <= 3.0f)
